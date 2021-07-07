@@ -1,4 +1,4 @@
-() Fetch para pegar dados da API
+(ok) Fetch para pegar dados da API
 
 Dados obtidos da rota “/summary”:
 () KPIs: Total de Confirmados, Total de Mortes e Total Recuperados.
