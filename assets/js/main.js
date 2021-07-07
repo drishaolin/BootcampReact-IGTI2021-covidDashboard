@@ -16,11 +16,11 @@ async function getCovidData() {
   let data = await fetchJson(`${baseURL}/summary`);
   let global = data.Global;
   let countriesArray = data.Countries;
-  return {global, countriesArray};
+  return { global, countriesArray };
 }
 
 (async function populateGlobalData() {
-  ({global} = await getCovidData());
+  ({ global } = await getCovidData());
   renderData("confirmed", global.TotalConfirmed);
   renderData("death", global.TotalDeaths);
   renderData("recovered", global.TotalRecovered);
@@ -35,3 +35,14 @@ async function getCovidData() {
   ).innerHTML = `${currentDate} - ${global.Date.slice(11, 16)}`;
 })();
 
+async function populateComboCountries() {
+  ({ countriesArray } = await getCovidData());
+  countriesList = countriesArray.map((item) => {
+    return { country: item.Country, slug: item.Slug };
+  });
+  
+  //prettier-ignore
+  countriesList.forEach((item) =>
+      (document.getElementById("combo").innerHTML += `<option value=${item.slug} >${item.country}</option>`)
+  );
+}
