@@ -46,3 +46,17 @@ async function populateComboCountries() {
       (document.getElementById("combo").innerHTML += `<option value=${item.slug} >${item.country}</option>`)
   );
 }
+
+async function populateCountriesData() {
+    let selectedDate = document.getElementById("today").value;
+    let selectedCountry = document.getElementById("combo").value;
+    let startDate = `${selectedDate}T00:00:00Z`;
+    let endDate = `${selectedDate}T23:59:59Z`;
+    let country = await fetchJson(`${baseURL}/country/${selectedCountry}?from=${startDate}&to=${endDate}`);
+      
+  renderData("confirmed", country[0].Confirmed);
+  renderData("death", country[0].Deaths);
+  renderData("recovered", country[0].Recovered);
+  document.getElementById("actives").innerHTML = "Ativos";
+  renderData("active", country[0].Active);
+}

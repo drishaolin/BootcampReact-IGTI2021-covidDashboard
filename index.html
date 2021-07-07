@@ -33,10 +33,10 @@
       </section>
     </div>
     <div>
-      <select class="custom-select" id="combo">
-        <option>Global</option>
+      <select class="custom-select" id="combo" onchange="populateCountriesData()">
+        <option value="global">Global</option>
       </select>
-      <input id="today" type="date" min="2020-01-01"/>
+      <input id="today" type="date" min="2020-01-01" onchange="populateCountriesData()"/>
     </div>
     <script src="./assets/js/main.js"></script>
   </body>
