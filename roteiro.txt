@@ -1,0 +1,9 @@
+() Fetch para pegar dados da API
+
+Dados obtidos da rota “/summary”:
+() KPIs: Total de Confirmados, Total de Mortes e Total Recuperados.
+
+() Montar o Combo Countries
+() Lógica para cálculo e exibição dos números diários
+() Filtros para exibição de informações por país e data
+
