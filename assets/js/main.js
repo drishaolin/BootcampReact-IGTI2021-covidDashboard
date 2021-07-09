@@ -74,45 +74,18 @@ async function populateCountriesData() {
   document.getElementById("actives-title").innerHTML = "Ativos";
   renderData("active", country[2].Active);
 
-  let legendConfirmed = "Diário";
-  if (country[2].Confirmed - country[1].Confirmed > country[1].Confirmed - country[0].Confirmed) {
-    legendConfirmed += `<img src="./assets/img/up.png"/>`;
-  } else {
-    legendConfirmed += `<img src="./assets/img/down.png"/>`;
-  }
-
-  let legendDeaths = "Diário";
-  if (country[2].Deaths - country[1].Deaths > country[1].Deaths - country[0].Deaths) {
-    legendDeaths += `<img src="./assets/img/up.png"/>`;
-  } else {
-    legendDeaths += `<img src="./assets/img/down.png"/>`;
-  }
-
-  let legendRecovered = "Diário";
-  if (country[2].Recovered - country[1].Recovered > country[1].Recovered - country[0].Recovered) {
-    legendRecovered += `<img src="./assets/img/up.png"/>`;
-  } else {
-    legendRecovered += `<img src="./assets/img/down.png"/>`;
-  }
-
-  let legendActive = "Diário";
-  if (country[2].Active - country[1].Active > country[1].Active - country[0].Active) {
-    legendActive += `<img src="./assets/img/up.png"/>`;
-  } else {
-    legendActive += `<img src="./assets/img/down.png"/>`;
-  }
-
   function renderDiaryData(status) {
     let legend = "Diário";
-    if (country[2].status - country[1].status > country[1].status - country[0].status) {
+    if (country[2][status] - country[1][status] > country[1][status] - country[0][status]) {
       legend += `<img src="./assets/img/up.png"/>`;
     } else {
       legend += `<img src="./assets/img/down.png"/>`;
     }
+    renderData(`diary-${status.toLowerCase()}`, country[2][status] - country[1][status], legend);
   }
 
-  renderData("diary-confirmed", country[2].Confirmed - country[1].Confirmed, legendConfirmed);
-  renderData("diary-death", country[2].Deaths - country[1].Deaths, legendDeaths);
-  renderData("diary-recovered", country[2].Recovered - country[1].Recovered, legendRecovered);
-  renderData("diary-active", country[2].Active - country[1].Active, legendActive);
+  renderDiaryData("Confirmed");
+  renderDiaryData("Deaths");
+  renderDiaryData("Recovered");
+  renderDiaryData("Active");
 }
